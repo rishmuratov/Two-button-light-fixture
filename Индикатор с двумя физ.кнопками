@@ -1,0 +1,16 @@
+PROGRAM PLC_PRG
+VAR
+	bButton_On : BOOL; (*вкл*)
+	bButton_Off : BOOL; (*выкл*)
+	bLamp : BOOL; (*лампочка*)
+	bButton_Old : BOOL; (*для запоминания кнопки*)
+END_VAR
+
+// !!! УДАЛИТЕ НЕИСПОЛЬЗУЕМЫЕ ИНТЕРФЕЙСЫ (RS-485, RS-232, Ethernet) ИЗ ПРОЕКТА !!!
+IF bButton_On THEN
+	bLamp := TRUE;   (* переключаем лампочку *)
+END_IF
+
+IF bButton_Off THEN
+	bLamp := FALSE;   (* переключаем лампочку *)
+END_IF
