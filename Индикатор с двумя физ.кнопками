@@ -3,14 +3,19 @@ VAR
 	bButton_On : BOOL; (*вкл*)
 	bButton_Off : BOOL; (*выкл*)
 	bLamp : BOOL; (*лампочка*)
-	bButton_Old : BOOL; (*для запоминания кнопки*)
+	bButtonOnOld : BOOL; (*запоминает предыдущее положение вкл*)
+	bButtonOffOld : BOOL; (*запоминает предыдущее положение выкл*)
 END_VAR
 
 // !!! УДАЛИТЕ НЕИСПОЛЬЗУЕМЫЕ ИНТЕРФЕЙСЫ (RS-485, RS-232, Ethernet) ИЗ ПРОЕКТА !!!
-IF bButton_On THEN
+IF bButton_On AND NOT bButtonOnOld THEN
 	bLamp := TRUE;   (* переключаем лампочку *)
 END_IF
 
-IF bButton_Off THEN
+IF bButton_Off AND NOT bButtonOffOld THEN
 	bLamp := FALSE;   (* переключаем лампочку *)
 END_IF
+
+bButtonOnOld := bButton_On;
+bButtonOffOld := bButton_Off;
+
