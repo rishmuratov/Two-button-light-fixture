@@ -1,21 +1,22 @@
 PROGRAM PLC_PRG
 VAR
-	bButton_On : BOOL; (*вкл*)
-	bButton_Off : BOOL; (*выкл*)
-	bLamp : BOOL; (*лампочка*)
-	bButtonOnOld : BOOL; (*запоминает предыдущее положение вкл*)
-	bButtonOffOld : BOOL; (*запоминает предыдущее положение выкл*)
+	button_On : BOOL; (*вкл*)
+	button_Off : BOOL; (*выкл*)
+	lamp : BOOL; (*лампочка*)
+	buttonOnOld : BOOL; (*запоминает предыдущее положение вкл*)
+	buttonOffOld : BOOL; (*запоминает предыдущее положение выкл*)
 END_VAR
 
 // !!! УДАЛИТЕ НЕИСПОЛЬЗУЕМЫЕ ИНТЕРФЕЙСЫ (RS-485, RS-232, Ethernet) ИЗ ПРОЕКТА !!!
-IF bButton_On AND NOT bButtonOnOld THEN
-	bLamp := TRUE;   (* переключаем лампочку *)
+IF button_On AND NOT buttonOnOld THEN
+	lamp := TRUE;   (* переключаем лампочку *)
 END_IF
 
-IF bButton_Off AND NOT bButtonOffOld THEN
-	bLamp := FALSE;   (* переключаем лампочку *)
+IF button_Off AND NOT buttonOffOld THEN
+	lamp := FALSE;   (* переключаем лампочку *)
 END_IF
 
-bButtonOnOld := bButton_On;
-bButtonOffOld := bButton_Off;
+buttonOnOld := button_On;
+buttonOffOld := button_Off;
+
 
